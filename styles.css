@@ -46,7 +46,7 @@ nav a { font-size: .78rem; font-weight: 650; text-decoration: none; text-transfo
 .hero-bottom { display: grid; grid-template-columns: minmax(260px, 35%) 1fr; align-items: end; gap: 8vw; margin: clamp(2rem, 3vw, 4rem) 8vw 0 12vw; }
 .hero-photo { position: relative; width: min(100%, 320px); transform: rotate(-2.2deg); }
 .photo-frame { padding: .55rem; background: white; box-shadow: 0 16px 45px rgba(32, 29, 22, .15); }
-.photo-frame img { width: 100%; aspect-ratio: 1; object-fit: cover; background: #c7ccd8; border-radius: 50%; filter: saturate(.9); }
+.photo-frame img { width: 100%; aspect-ratio: 1; object-fit: cover; background: #c7ccd8; filter: saturate(.9); }
 .photo-note { position: absolute; left: calc(100% - 1rem); bottom: 12%; width: 130px; font: italic 1rem var(--serif); transform: rotate(2.2deg); }
 .hero-intro { max-width: 570px; padding-bottom: 1rem; }
 .hero-intro p { margin: 0 0 2rem; font-size: clamp(1.05rem, 1.6vw, 1.45rem); line-height: 1.55; letter-spacing: -.02em; }
