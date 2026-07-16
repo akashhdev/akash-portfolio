@@ -27,6 +27,8 @@ This entry is already installed immediately before the final `http_status:404` r
 ```yaml
   - hostname: akash.tw
     service: http://127.0.0.1:8083
+  - hostname: www.akash.tw
+    service: http://127.0.0.1:8083
 ```
 
 To validate or restart it later, use PM2 (the tunnel is not a systemd service on this server):
@@ -46,6 +48,7 @@ Once active, route the hostname to the existing tunnel:
 
 ```bash
 cloudflared tunnel route dns 89937102-5243-4007-92f7-b8feb90d8966 akash.tw
+cloudflared tunnel route dns 89937102-5243-4007-92f7-b8feb90d8966 www.akash.tw
 ```
 
 Cloudflare creates the proxied DNS record. Remove any conflicting root `A`, `AAAA`, or `CNAME` records first.
