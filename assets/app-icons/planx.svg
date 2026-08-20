@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">PlanX</title>
+  <defs>
+    <linearGradient id="blue" x1="24" y1="16" x2="104" y2="112" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1a73e8"/>
+      <stop offset=".66" stop-color="#0b57d0"/>
+      <stop offset="1" stop-color="#0842a0"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="34" fill="url(#blue)"/>
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="7">
+    <rect x="28" y="34" width="72" height="68" rx="12"/>
+    <path d="M43 25v18M85 25v18M28 55h72"/>
+  </g>
+  <circle cx="47" cy="73" r="5" fill="#fff"/>
+  <circle cx="64" cy="73" r="5" fill="#fff"/>
+  <circle cx="81" cy="73" r="5" fill="#fff"/>
+  <circle cx="47" cy="89" r="5" fill="#fff"/>
+  <circle cx="64" cy="89" r="5" fill="#fff"/>
+</svg>

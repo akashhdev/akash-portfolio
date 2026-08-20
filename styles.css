@@ -114,7 +114,7 @@ footer a { text-decoration: none; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; }.reveal { opacity: 1; transform: none; transition: none; }.site-header, .project-visual { transition: none; } }
 
 @media (max-width: 820px) {
-  .site-header { height: 92px; }.site-header.scrolled { height: 78px; }.site-header nav a:not(.nav-contact) { display: none; }
+  .site-header { height: 92px; }.site-header.scrolled { height: 78px; }.site-header nav { gap: 1.25rem; }.site-header nav a { font-size: .9rem; }.site-header nav a:not(.nav-contact):not(.nav-apps) { display: none; }
   .hero { padding-top: 8rem; }.hero h1 { margin-left: -20px; font-size: clamp(3.8rem, 17vw, 7rem); }.hero-indent { padding-left: 4vw; }
   .hero-bottom { grid-template-columns: 1fr; margin: 3rem 0 0; gap: 3.5rem; }.hero-photo { width: min(100%, 432px); margin-left: 20vw; transform: rotate(-2.8deg); }.photo-note { right: 1rem; bottom: 1rem; width: 180px; font-size: 1.7rem; }
   .hero-intro { margin-left: 0; }

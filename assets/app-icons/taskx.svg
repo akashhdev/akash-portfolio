@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">TaskX</title>
+  <rect width="128" height="128" rx="34" fill="#10b981"/>
+  <text x="64" y="77" fill="#fff" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="44" font-weight="900" letter-spacing="-4" text-anchor="middle">TX</text>
+</svg>
