@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ResumeEntry } from "@/lib/schemas";
 import { ResumeVisual } from "@/components/resume-visual";
 
@@ -14,28 +13,38 @@ const sectionLabels: Record<ResumeEntry["section"], string> = {
 };
 
 export function ResumeEntryCollection({ entries }: { entries: ResumeEntry[] }) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const search = useSearchParams();
-  const activeId = search.get("preview");
+  const [activeId, setActiveId] = useState<string | null>(null);
   const active = entries.find((entry) => entry.id === activeId);
   const closeButton = useRef<HTMLButtonElement>(null);
   const lastTrigger = useRef<HTMLElement | null>(null);
 
   function currentHash() { return typeof window === "undefined" ? "" : window.location.hash; }
 
+  function updatePreview(id: string | null) {
+    const url = new URL(window.location.href);
+    if (id) url.searchParams.set("preview", id);
+    else url.searchParams.delete("preview");
+    window.history.pushState(null, "", `${url.pathname}${url.search}${currentHash()}`);
+    setActiveId(id);
+  }
+
   function open(id: string, event: React.MouseEvent<HTMLElement>) {
     lastTrigger.current = event.currentTarget;
-    const params = new URLSearchParams(search.toString());
-    params.set("preview", id);
-    router.push(`${pathname}?${params.toString()}${currentHash()}`, { scroll: false });
+    updatePreview(id);
   }
 
   function close() {
-    const params = new URLSearchParams(search.toString());
-    params.delete("preview");
-    router.push(`${params.size ? `${pathname}?${params.toString()}` : pathname}${currentHash()}`, { scroll: false });
+    updatePreview(null);
   }
+
+  useEffect(() => {
+    function syncPreviewFromUrl() {
+      setActiveId(new URLSearchParams(window.location.search).get("preview"));
+    }
+    syncPreviewFromUrl();
+    window.addEventListener("popstate", syncPreviewFromUrl);
+    return () => window.removeEventListener("popstate", syncPreviewFromUrl);
+  }, []);
 
   useEffect(() => {
     if (!active) return;

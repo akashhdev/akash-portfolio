@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import Script from "next/script";
 import { ResumeEntryCollection } from "@/components/resume-timeline";
 import { SectionHeading } from "@/components/section-heading";
@@ -62,7 +61,7 @@ export default function HomePage() {
         <div className="page-shell">
           <span className="section-scroll-target" id="education" aria-hidden="true" />
           <SectionHeading id="education-title" number="02" eyebrow="Education" title="Technical foundations, extended through research." description="Formal study spanning computer science, artificial intelligence, advanced manufacturing, and industrially connected graduate research." variant="resume" />
-          <Suspense fallback={<p>Loading education…</p>}><ResumeEntryCollection entries={entriesForSection("education")} /></Suspense>
+          <ResumeEntryCollection entries={entriesForSection("education")} />
         </div>
       </section>
 
@@ -70,7 +69,7 @@ export default function HomePage() {
         <div className="page-shell">
           <span className="section-scroll-target" id="experience" aria-hidden="true" />
           <SectionHeading id="experience-title" number="03" eyebrow="Experience" title="Research systems with real constraints." description="Current graduate-lab engineering, an incoming industrial R&D placement, and an earlier international computer-vision research internship." variant="resume" />
-          <Suspense fallback={<p>Loading experience…</p>}><ResumeEntryCollection entries={entriesForSection("experience")} /></Suspense>
+          <ResumeEntryCollection entries={entriesForSection("experience")} />
         </div>
       </section>
 
@@ -78,7 +77,7 @@ export default function HomePage() {
         <div className="page-shell">
           <span className="section-scroll-target" id="awards" aria-hidden="true" />
           <SectionHeading id="awards-title" number="04" eyebrow="Awards" title="Recognition that enabled the work." description="Fellowships, academic support, and technical competition results presented with their status and context." variant="resume" />
-          <Suspense fallback={<p>Loading awards…</p>}><ResumeEntryCollection entries={entriesForSection("award")} /></Suspense>
+          <ResumeEntryCollection entries={entriesForSection("award")} />
         </div>
       </section>
 
@@ -86,7 +85,7 @@ export default function HomePage() {
         <div className="page-shell">
           <span className="section-scroll-target" id="projects" aria-hidden="true" />
           <SectionHeading id="projects-title" number="05" eyebrow="Projects" title="Earlier experiments that built technical range." description="Computer vision, neural image systems, and geospatial application work remain separate from the graduate-lab research record." variant="resume" />
-          <Suspense fallback={<p>Loading projects…</p>}><ResumeEntryCollection entries={entriesForSection("project")} /></Suspense>
+          <ResumeEntryCollection entries={entriesForSection("project")} />
           <div className="resume-section-action"><a className="text-action" href="/projects">Explore the complete project archive <span aria-hidden="true">→</span></a><a className="text-action" href="/apps">View authored and operated apps <span aria-hidden="true">→</span></a></div>
         </div>
       </section>

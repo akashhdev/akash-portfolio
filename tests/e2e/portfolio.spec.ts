@@ -1,5 +1,16 @@
 import { expect, test } from "@playwright/test";
 
+test("homepage sends complete résumé sections in its initial HTML", async ({ request }) => {
+  const response = await request.get("/");
+  expect(response.ok()).toBeTruthy();
+  const html = await response.text();
+  expect(html).toContain("M.S. Advanced Manufacturing");
+  expect(html).toContain("Graduate Research Student");
+  expect(html).toContain("INTENSE Program Fellow");
+  expect(html).toContain("Image Color Restoration");
+  expect(html).not.toMatch(/Loading (education|experience|awards|projects)/);
+});
+
 test("homepage résumé drawer preserves its section hash", async ({ page }) => {
   await page.goto("/#experience");
   const trigger = page.getByRole("button", { name: /Graduate Research Student/ });
