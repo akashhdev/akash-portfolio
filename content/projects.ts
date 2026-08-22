@@ -1,5 +1,5 @@
 export const projects = [
-  { year: "2023", title: "ArcGIS shapefiles to 3D models", area: "Geospatial API", summary: "A Flask API that converted 2D shapefiles into rendered 3D models during a 48-hour national hackathon.", skills: ["Python", "Flask", "ArcGIS"] },
+  { year: "2022", title: "ArcGIS shapefiles to 3D models", area: "Geospatial API", summary: "A Flask API that converted 2D shapefiles into rendered 3D models during a 48-hour national hackathon.", skills: ["Python", "Flask", "ArcGIS"] },
   { year: "2024", title: "Fast neural artistic style transfer", area: "Machine learning", summary: "A PyTorch implementation for transferring the visual character of an artwork onto another image.", skills: ["PyTorch", "CNNs", "Imaging"] },
   { year: "2024", title: "Image color restoration", area: "Machine learning", summary: "A neural approach for restoring plausible color to black-and-white photographs and archival imagery.", skills: ["PyTorch", "Computer vision"] },
   { year: "2024", title: "Gesture-controlled coffee ordering", area: "Human-computer interaction", summary: "A touch-free ordering flow driven by tracked hand gestures, including menu navigation and receipt output.", skills: ["OpenCV", "Gesture tracking", "HCI"] },
