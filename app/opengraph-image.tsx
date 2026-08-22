@@ -1,0 +1,5 @@
+import { ImageResponse } from "next/og";
+export const alt = "Akash Raj Patel — Graduate Research Engineer";
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
+export default function OpenGraphImage() { return new ImageResponse(<div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "72px", background: "#FFFFFF", color: "#171719", fontFamily: "serif" }}><div style={{ display: "flex", justifyContent: "space-between", fontFamily: "monospace", fontSize: 22, letterSpacing: 2 }}><span>AKASH.TW</span><span style={{ color: "#B01030" }}>RESEARCH / 2026</span></div><div style={{ display: "flex", fontSize: 86, lineHeight: .95, maxWidth: 980 }}>Making research&nbsp;<span style={{ color: "#B01030", fontStyle: "italic" }}>observable.</span></div><div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: "sans-serif", fontSize: 24 }}><span style={{ width: 12, height: 12, borderRadius: 99, background: "#2A2A2E" }}></span>Graduate Research Engineer · Scientific visualization · Geospatial systems</div></div>, size); }

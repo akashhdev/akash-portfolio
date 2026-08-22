@@ -5,16 +5,14 @@
 
 :8083 {
 	encode zstd gzip
-	root * /home/akash/akash-portfolio
-	file_server
+	reverse_proxy 127.0.0.1:3003
 
 	header {
 		X-Content-Type-Options nosniff
 		Referrer-Policy strict-origin-when-cross-origin
 		Permissions-Policy "camera=(), microphone=(), geolocation=()"
-		Content-Security-Policy "default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
 	}
 
-	@assets path *.css *.js *.png *.svg
-	header @assets Cache-Control "public, max-age=604800"
+	@immutable path /_next/static/*
+	header @immutable Cache-Control "public, max-age=31536000, immutable"
 }

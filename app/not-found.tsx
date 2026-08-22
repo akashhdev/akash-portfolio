@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function NotFound() { return <main id="main"><div className="page-shell"><section className="resume-hero"><p className="eyebrow mono">Error / 404</p><h1>Record<br /><em>not found.</em></h1><div className="hero-bottom"><p className="hero-thesis">The requested page is not part of the public research record.</p><Link className="text-action" href="/">Return to the résumé →</Link></div></section></div></main>; }

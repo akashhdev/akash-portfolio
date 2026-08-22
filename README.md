@@ -1,31 +1,29 @@
-# akash.tw portfolio
+# Akash Raj Patel — research portfolio
 
-A fast, framework-free portfolio for Akash Raj Patel, hosted on a local Caddy instance and exposed through Cloudflare Tunnel.
+A research-first interactive résumé built with Next.js App Router, TypeScript, server-rendered MDX, and a standalone Node production target.
 
-## Local preview
+The homepage is a continuous, section-navigated résumé with desktop scrollspy navigation, an accessible mobile swipe drawer, URL-addressable entry previews, and an unchanged downloadable PDF résumé.
+
+## Local development
 
 ```bash
-python3 -m http.server 4173
+npm install
+npm run dev -- --hostname 127.0.0.1 --port 4173
 ```
 
 Open `http://127.0.0.1:4173`.
 
-## Production layout
+## Quality checks
 
-- Static site root: `/home/akash/akash-portfolio`
-- Local Caddy listener: `http://127.0.0.1:8083`
-- Public hostname: `https://akash.tw`
-- Tunnel origin: `http://127.0.0.1:8083`
+```bash
+npm run lint
+npm test
+npm run build
+npm run test:e2e
+```
 
-The repository's `Caddyfile` is a self-contained site config. Either run it as a separate service or add its site block to the system Caddyfile. See `DEPLOYMENT.md` for exact setup instructions.
+Writing templates in `content/writing/` begin with an underscore and are drafts. Drafts are excluded from public indexes, routes, RSS, sitemap, and production metadata.
 
-## Editing
+## Production
 
-The site has no build step or dependencies:
-
-- `index.html` — page copy and structure
-- `styles.css` — responsive layout and design
-- `script.js` — reveal animation and header behavior
-- `assets/` — local portrait and favicon
-
-After editing, refresh the page. Changes are served directly from the working tree.
+The build uses `output: "standalone"`. Run `.next/standalone/server.js` on `127.0.0.1:3003` and place Caddy in front on `127.0.0.1:8083`. See `DEPLOYMENT.md` for build, health, restart, logs, and rollback procedures.

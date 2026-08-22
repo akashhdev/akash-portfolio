@@ -3,130 +3,86 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A quick launcher for the apps Akash builds and self-hosts." />
+    <meta name="description" content="Products built, customized, and self-hosted by Akash Raj Patel." />
     <meta name="theme-color" content="#f3f0e8" />
     <meta property="og:title" content="Apps — Akash Raj Patel" />
-    <meta property="og:description" content="Tools for learning, focus, planning, photos, and media." />
+    <meta property="og:description" content="Case studies in learning, focus, planning, personal media, and independent infrastructure." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://akash.tw/apps/" />
     <title>Apps — Akash Raj Patel</title>
+    <script>document.documentElement.classList.add('js')</script>
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/styles.css?v=headline-left-40" />
-    <link rel="stylesheet" href="/apps/apps.css?v=apps-1" />
+    <link rel="stylesheet" href="/styles.css?v=portfolio-expanded-1" />
+    <link rel="stylesheet" href="/apps/apps.css?v=apps-cases-1" />
     <script src="/script.js" defer></script>
   </head>
   <body class="apps-page">
     <a class="skip-link" href="#main">Skip to apps</a>
-
     <header class="site-header" data-header>
       <a class="brand" href="/" aria-label="Akash, back to portfolio">A<span>/</span></a>
-      <nav aria-label="Primary navigation">
-        <a href="/#work">Work</a>
-        <a href="/#about">About</a>
-        <a class="nav-apps active" href="/apps/" aria-current="page">Apps</a>
-        <a class="nav-contact" href="/#contact">Let's talk <span aria-hidden="true">↗</span></a>
-      </nav>
+      <nav aria-label="Primary navigation"><a href="/#work">Work</a><a href="/#journey">Journey</a><a href="/projects/">Projects</a><a class="nav-apps active" href="/apps/" aria-current="page">Apps</a><a class="nav-contact" href="/#contact">Let's talk <span aria-hidden="true">↗</span></a></nav>
     </header>
 
     <main id="main" class="apps-main">
       <section class="apps-hero" aria-labelledby="apps-title">
-        <div class="apps-kicker reveal">
-          <span class="status-dot" aria-hidden="true"></span>
-          <span>Built here · hosted here</span>
-        </div>
-
-        <div class="apps-heading">
-          <h1 id="apps-title" class="reveal">My apps,<br /><em>one click away.</em></h1>
-          <p class="apps-intro reveal">
-            A small constellation of tools for learning, focused work, planning, memories, and quiet evenings.
-          </p>
-        </div>
+        <div class="apps-kicker reveal"><span class="status-dot" aria-hidden="true"></span><span>Built · customized · self-hosted</span></div>
+        <div class="apps-heading"><h1 id="apps-title" class="reveal">Useful software,<br /><em>kept close.</em></h1><p class="apps-intro reveal">Five living systems for learning, focused work, planning, memories, and quiet evenings—designed or operated from end to end.</p></div>
       </section>
 
       <section class="apps-directory" aria-labelledby="directory-title">
-        <div class="directory-heading reveal">
-          <p class="eyebrow">App directory · 05</p>
-          <h2 id="directory-title">Choose where<br />to go next.</h2>
-        </div>
-
-        <div class="app-grid">
-          <a class="app-card app-langx reveal" href="https://lang.akash.tw" target="_blank" rel="noreferrer" aria-label="Open LangX">
-            <div class="app-card-top">
-              <img class="app-icon" src="/assets/app-icons/langx.svg" width="96" height="96" alt="" />
-              <span class="app-arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="app-card-copy">
-              <span class="app-kind">Language learning</span>
-              <h3>LangX</h3>
-              <p>Mandarin practice, flashcards, reading, listening, and classroom tools.</p>
-            </div>
-            <span class="app-domain">lang.akash.tw</span>
-          </a>
-
-          <a class="app-card app-taskx reveal" href="https://task.akash.tw" target="_blank" rel="noreferrer" aria-label="Open TaskX">
-            <div class="app-card-top">
-              <img class="app-icon" src="/assets/app-icons/taskx.svg" width="96" height="96" alt="" />
-              <span class="app-arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="app-card-copy">
-              <span class="app-kind">Focus &amp; tasks</span>
-              <h3>TaskX</h3>
-              <p>Plan tasks, run focused sessions, and understand where the time went.</p>
-            </div>
-            <span class="app-domain">task.akash.tw</span>
-          </a>
-
-          <a class="app-card app-planx reveal" href="https://plan.akash.tw" target="_blank" rel="noreferrer" aria-label="Open PlanX">
-            <div class="app-card-top">
-              <img class="app-icon" src="/assets/app-icons/planx.svg" width="96" height="96" alt="" />
-              <span class="app-arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="app-card-copy">
-              <span class="app-kind">Calendar &amp; planning</span>
-              <h3>PlanX</h3>
-              <p>A focused calendar connecting plans, goals, and completed work.</p>
-            </div>
-            <span class="app-domain">plan.akash.tw</span>
-          </a>
-
-          <a class="app-card app-photosx reveal" href="https://photos.akash.tw" target="_blank" rel="noreferrer" aria-label="Open PhotosX">
-            <div class="app-card-top">
-              <img class="app-icon" src="/assets/app-icons/photosx.svg" width="96" height="96" alt="" />
-              <span class="app-arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="app-card-copy">
-              <span class="app-kind">Private photo library</span>
-              <h3>PhotosX</h3>
-              <p>A self-hosted home for photos, videos, albums, and memories.</p>
-            </div>
-            <span class="app-domain">photos.akash.tw</span>
-          </a>
-
-          <a class="app-card app-watchx reveal" href="https://watch.akash.tw" target="_blank" rel="noreferrer" aria-label="Open WatchX">
-            <div class="app-card-top">
-              <img class="app-icon" src="/assets/app-icons/watchx.svg" width="96" height="96" alt="" />
-              <span class="app-arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="app-card-copy">
-              <span class="app-kind">Personal media</span>
-              <h3>WatchX</h3>
-              <p>A private cinema for films, series, and everything worth rewatching.</p>
-            </div>
-            <span class="app-domain">watch.akash.tw</span>
-          </a>
+        <div class="directory-heading reveal"><p class="eyebrow">App directory · 05</p><h2 id="directory-title">Choose a<br />case study.</h2></div>
+        <div class="app-index-grid">
+          <a class="app-index app-langx reveal" href="#langx"><img src="/assets/app-icons/langx.svg" width="72" height="72" alt="" /><span><small>Language learning</small><strong>LangX</strong></span><i aria-hidden="true">↓</i></a>
+          <a class="app-index app-taskx reveal" href="#taskx"><img src="/assets/app-icons/taskx.svg" width="72" height="72" alt="" /><span><small>Focus &amp; tasks</small><strong>TaskX</strong></span><i aria-hidden="true">↓</i></a>
+          <a class="app-index app-planx reveal" href="#planx"><img src="/assets/app-icons/planx.svg" width="72" height="72" alt="" /><span><small>Calendar</small><strong>PlanX</strong></span><i aria-hidden="true">↓</i></a>
+          <a class="app-index app-photosx reveal" href="#photosx"><img src="/assets/app-icons/photosx.svg" width="72" height="72" alt="" /><span><small>Private photos</small><strong>PhotosX</strong></span><i aria-hidden="true">↓</i></a>
+          <a class="app-index app-watchx reveal" href="#watchx"><img src="/assets/app-icons/watchx.svg" width="72" height="72" alt="" /><span><small>Personal media</small><strong>WatchX</strong></span><i aria-hidden="true">↓</i></a>
         </div>
       </section>
 
-      <section class="apps-note reveal" aria-label="About these apps">
-        <p>Designed, built, and kept online from this server.</p>
-        <a href="/">Back to the portfolio <span aria-hidden="true">↖</span></a>
+      <section class="case-study case-langx" id="langx" aria-labelledby="langx-title">
+        <div class="case-intro reveal">
+          <div class="case-meta"><img src="/assets/app-icons/langx.svg" width="88" height="88" alt="" /><div><span>01 · Authored product</span><strong>Live</strong></div></div>
+          <div class="case-title"><p class="eyebrow">Mandarin, made practicable</p><h2 id="langx-title">LangX</h2><p>An AI-assisted Mandarin workspace that turns vocabulary, passages, audio, and grammar into focused practice for independent learners and classrooms.</p><a class="case-link" href="https://lang.akash.tw" target="_blank" rel="noreferrer">Open LangX <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <div class="case-details reveal"><div><span>Problem</span><p>Language tools often split vocabulary, reading, listening, and grammar into disconnected experiences with little continuity.</p></div><div><span>Solution</span><p>One practice environment where generated material, saved vocabulary, notes, and progress can reinforce each other.</p></div><div><span>My contribution</span><p>Product direction, interface design, full-stack implementation, AI workflows, educator sharing, deployment, and ongoing operations.</p></div></div>
+        <div class="feature-block reveal"><p class="eyebrow">Key capabilities</p><ul><li>Flashcard decks and familiarity-based review</li><li>Generated reading with word-level glosses</li><li>Listening conversations and reports</li><li>Grammar exercises and comprehension questions</li><li>Educator publishing and classroom sharing</li><li>Saved progress and inline practice notes</li></ul><div class="case-stack"><span>React</span><span>Node.js</span><span>PostgreSQL</span><span>Applied AI</span></div></div>
+        <div class="screenshots reveal" aria-label="LangX screenshot placeholders">
+          <figure class="screen-placeholder screen-wide" style="--screen-accent:#c9f25b"><div class="screen-chrome"><i></i><i></i><i></i><span>lang.akash.tw</span></div><div class="dummy-ui"><div class="dummy-sidebar"></div><div class="dummy-main"><b>Practice dashboard</b><span></span><span></span><span></span></div></div><figcaption>Replace with <code>langx-practice-dashboard.webp</code> · desktop 16:10</figcaption></figure>
+          <figure class="screen-placeholder screen-phone" style="--screen-accent:#c9f25b"><div class="screen-chrome"><i></i><i></i><i></i><span>Study</span></div><div class="dummy-ui"><div class="dummy-card"><b>學習</b><small>xué xí · to learn</small></div></div><figcaption>Replace with <code>langx-flashcards.webp</code> · mobile 9:16</figcaption></figure>
+        </div>
       </section>
+
+      <section class="case-study case-taskx" id="taskx" aria-labelledby="taskx-title">
+        <div class="case-intro reveal"><div class="case-meta"><img src="/assets/app-icons/taskx.svg" width="88" height="88" alt="" /><div><span>02 · Authored product</span><strong>Live</strong></div></div><div class="case-title"><p class="eyebrow">Plan · focus · review</p><h2 id="taskx-title">TaskX</h2><p>A focus system that connects the work you intend to do with the sessions you actually complete—and makes the difference visible.</p><a class="case-link" href="https://task.akash.tw" target="_blank" rel="noreferrer">Open TaskX <span aria-hidden="true">↗</span></a></div></div>
+        <div class="case-details reveal"><div><span>Problem</span><p>Task lists capture intention while timers capture effort, but most tools leave those two records disconnected.</p></div><div><span>Solution</span><p>Tasks, projects, and reusable plans flow directly into focused sessions, then into reports that show where attention went.</p></div><div><span>My contribution</span><p>Product architecture, interaction design, front-end engineering, focus workflow, reporting experience, and deployment.</p></div></div>
+        <div class="feature-block reveal"><p class="eyebrow">Key capabilities</p><ul><li>Tasks, projects, tags, and reusable templates</li><li>Pomodoro-style focused sessions</li><li>Daily planning and progress tracking</li><li>Reports by focus time, tags, and outcomes</li><li>Synced activity across the product family</li><li>Direct handoff into PlanX scheduling</li></ul><div class="case-stack"><span>TypeScript</span><span>React</span><span>Tailwind</span><span>Focus analytics</span></div></div>
+        <div class="screenshots reveal" aria-label="TaskX screenshot placeholders"><figure class="screen-placeholder screen-wide" style="--screen-accent:#9ee9c9"><div class="screen-chrome"><i></i><i></i><i></i><span>task.akash.tw</span></div><div class="dummy-ui"><div class="dummy-sidebar"></div><div class="dummy-main"><b>Planning dashboard</b><span></span><span></span><span></span></div></div><figcaption>Replace with <code>taskx-planning-dashboard.webp</code> · desktop 16:10</figcaption></figure><figure class="screen-placeholder screen-phone" style="--screen-accent:#9ee9c9"><div class="screen-chrome"><i></i><i></i><i></i><span>Focus</span></div><div class="dummy-ui"><div class="dummy-timer"><b>25:00</b><small>FOCUS</small></div></div><figcaption>Replace with <code>taskx-focus-report.webp</code> · mobile 9:16</figcaption></figure></div>
+      </section>
+
+      <section class="case-study case-planx" id="planx" aria-labelledby="planx-title">
+        <div class="case-intro reveal"><div class="case-meta"><img src="/assets/app-icons/planx.svg" width="88" height="88" alt="" /><div><span>03 · Authored product</span><strong>Live</strong></div></div><div class="case-title"><p class="eyebrow">Time, given shape</p><h2 id="planx-title">PlanX</h2><p>A TaskX-native calendar for arranging work clearly, turning scheduled events into focused progress, and seeing the day as one connected system.</p><a class="case-link" href="https://plan.akash.tw" target="_blank" rel="noreferrer">Open PlanX <span aria-hidden="true">↗</span></a></div></div>
+        <div class="case-details reveal"><div><span>Problem</span><p>Calendars reserve time and task managers define work, yet translating between them creates friction and stale plans.</p></div><div><span>Solution</span><p>A focused calendar that treats TaskX work as a first-class part of scheduling instead of a separate list.</p></div><div><span>My contribution</span><p>Product concept, calendar interaction model, TaskX integration, responsive experience, PWA behavior, and deployment.</p></div></div>
+        <div class="feature-block reveal"><p class="eyebrow">Key capabilities</p><ul><li>Calendar-based daily and weekly planning</li><li>TaskX-connected work scheduling</li><li>Events that become focused progress</li><li>Clear continuity between plans and outcomes</li><li>Shared progress within the product family</li><li>Installable, responsive PWA experience</li></ul><div class="case-stack"><span>Calendar systems</span><span>PWA</span><span>TaskX integration</span><span>Product design</span></div></div>
+        <div class="screenshots reveal" aria-label="PlanX screenshot placeholders"><figure class="screen-placeholder screen-wide" style="--screen-accent:#aec8ff"><div class="screen-chrome"><i></i><i></i><i></i><span>plan.akash.tw</span></div><div class="dummy-ui calendar-dummy"><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><figcaption>Replace with <code>planx-calendar.webp</code> · desktop 16:10</figcaption></figure><figure class="screen-placeholder screen-phone" style="--screen-accent:#aec8ff"><div class="screen-chrome"><i></i><i></i><i></i><span>Today</span></div><div class="dummy-ui"><div class="dummy-agenda"><b>Focused work</b><span></span><b>Review</b><span></span></div></div><figcaption>Replace with <code>planx-task-integration.webp</code> · mobile 9:16</figcaption></figure></div>
+      </section>
+
+      <section class="case-study case-photosx" id="photosx" aria-labelledby="photosx-title">
+        <div class="case-intro reveal"><div class="case-meta"><img src="/assets/app-icons/photosx.svg" width="88" height="88" alt="" /><div><span>04 · Customized deployment</span><strong>Private</strong></div></div><div class="case-title"><p class="eyebrow">Memories, owned</p><h2 id="photosx-title">PhotosX</h2><p>A private photo and video home built around ownership, fast access, thoughtful organization, and an infrastructure stack I can operate myself.</p><a class="case-link" href="https://photos.akash.tw" target="_blank" rel="noreferrer">Open PhotosX <span aria-hidden="true">↗</span></a></div></div>
+        <div class="case-details reveal"><div><span>Problem</span><p>Personal memories are sensitive, long-lived data. I wanted the convenience of a modern photo library without giving up control of the archive.</p></div><div><span>Solution</span><p>A customized Immich deployment providing a private, familiar library for photos, video, albums, search, and backup.</p></div><div><span>My contribution</span><p>Infrastructure design, deployment, custom PhotosX branding, access configuration, updates, storage stewardship, and ongoing operations.</p></div></div>
+        <div class="feature-block reveal"><p class="eyebrow">Key capabilities</p><ul><li>Private photo and video timeline</li><li>Albums and searchable organization</li><li>Mobile-friendly access and backup</li><li>Personally controlled storage</li><li>Custom PhotosX presentation</li><li>Maintained self-hosted deployment</li></ul><div class="case-stack"><span>Immich</span><span>Self-hosted</span><span>Custom branding</span><span>Private storage</span></div><p class="platform-credit">PhotosX is a customized private deployment powered by the open-source Immich platform.</p></div>
+        <div class="screenshots reveal" aria-label="PhotosX screenshot placeholders"><figure class="screen-placeholder screen-wide" style="--screen-accent:#ffc3d4"><div class="screen-chrome"><i></i><i></i><i></i><span>photos.akash.tw</span></div><div class="dummy-ui photo-dummy"><i></i><i></i><i></i><i></i><i></i><i></i></div><figcaption>Replace with <code>photosx-timeline.webp</code> · desktop 16:10</figcaption></figure><figure class="screen-placeholder screen-phone" style="--screen-accent:#ffc3d4"><div class="screen-chrome"><i></i><i></i><i></i><span>Albums</span></div><div class="dummy-ui photo-dummy"><i></i><i></i><i></i><i></i></div><figcaption>Replace with <code>photosx-albums.webp</code> · mobile 9:16</figcaption></figure></div>
+      </section>
+
+      <section class="case-study case-watchx" id="watchx" aria-labelledby="watchx-title">
+        <div class="case-intro reveal"><div class="case-meta"><img src="/assets/app-icons/watchx.svg" width="88" height="88" alt="" /><div><span>05 · Customized deployment</span><strong>Private</strong></div></div><div class="case-title"><p class="eyebrow">A cinema at home</p><h2 id="watchx-title">WatchX</h2><p>A private media server for organizing and enjoying a personal film and series library across devices, without surrendering control of the collection.</p><a class="case-link" href="https://watch.akash.tw" target="_blank" rel="noreferrer">Open WatchX <span aria-hidden="true">↗</span></a></div></div>
+        <div class="case-details reveal"><div><span>Problem</span><p>A personal media library should remain organized, available, and pleasant to use without depending on an ever-changing set of streaming catalogs.</p></div><div><span>Solution</span><p>A customized Jellyfin server that indexes the collection and provides a consistent private viewing experience across devices.</p></div><div><span>My contribution</span><p>Server deployment, secure access, library organization, custom WatchX identity, operational maintenance, and the surrounding self-hosted stack.</p></div></div>
+        <div class="feature-block reveal"><p class="eyebrow">Key capabilities</p><ul><li>Personal film and series library</li><li>Cross-device browser playback</li><li>Metadata and collection organization</li><li>Private authenticated access</li><li>Custom WatchX presentation</li><li>Maintained self-hosted operations</li></ul><div class="case-stack"><span>Jellyfin</span><span>Self-hosted</span><span>Media server</span><span>Private access</span></div><p class="platform-credit">WatchX is a customized private deployment powered by the open-source Jellyfin media system.</p></div>
+        <div class="screenshots reveal" aria-label="WatchX screenshot placeholders"><figure class="screen-placeholder screen-wide" style="--screen-accent:#cabffd"><div class="screen-chrome"><i></i><i></i><i></i><span>watch.akash.tw</span></div><div class="dummy-ui media-dummy"><i></i><i></i><i></i><i></i><i></i></div><figcaption>Replace with <code>watchx-library.webp</code> · desktop 16:10</figcaption></figure><figure class="screen-placeholder screen-phone" style="--screen-accent:#cabffd"><div class="screen-chrome"><i></i><i></i><i></i><span>Now playing</span></div><div class="dummy-ui"><div class="dummy-player"><i>▶</i><span></span></div></div><figcaption>Replace with <code>watchx-playback.webp</code> · mobile 9:16</figcaption></figure></div>
+      </section>
+
+      <section class="apps-note reveal"><p>Built where useful. Self-hosted where ownership matters.</p><a href="/">Back to the portfolio <span aria-hidden="true">↖</span></a></section>
     </main>
-
-    <footer>
-      <span>© <span data-year></span> Akash Raj Patel</span>
-      <span>Five apps. One home.</span>
-      <a href="#main">Back to top ↑</a>
-    </footer>
+    <footer><span>© <span data-year></span> Akash Raj Patel</span><span>Five apps. One home.</span><a href="#main">Back to top ↑</a></footer>
   </body>
 </html>

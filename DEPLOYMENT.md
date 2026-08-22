@@ -1,73 +1,52 @@
-# Deployment guide
+# Production deployment
 
-## Current server state
+The portfolio runs as a standalone Next.js Node service behind Caddy and the existing Cloudflare Tunnel.
 
-- The portfolio is live on the local origin at `http://127.0.0.1:8083`.
-- The running Caddy configuration includes the portfolio route.
-- `/home/akash/.cloudflared/config.yml` includes the `akash.tw` ingress.
-- The PM2-managed `langx-cloudflared` connector has been restarted and saved.
+## Build a release
 
-## 1. Persist the Caddy configuration
-
-The validated combined configuration is staged at `/tmp/Caddyfile.akash-tw`. Install it before the next server reboot:
-
-```bash
-sudo cp /tmp/Caddyfile.akash-tw /etc/caddy/Caddyfile
-sudo caddy validate --config /etc/caddy/Caddyfile
-sudo systemctl reload caddy
-curl -I http://127.0.0.1:8083
-```
-
-If the staged file is no longer available, append the repository's `Caddyfile` site block to `/etc/caddy/Caddyfile` instead, then format, validate, and reload it.
-
-## 2. Cloudflare Tunnel ingress
-
-This entry is already installed immediately before the final `http_status:404` rule:
-
-```yaml
-  - hostname: akash.tw
-    service: http://127.0.0.1:8083
-  - hostname: www.akash.tw
-    service: http://127.0.0.1:8083
-```
-
-To validate or restart it later, use PM2 (the tunnel is not a systemd service on this server):
-
-```bash
-cloudflared tunnel ingress validate
-pm2 restart langx-cloudflared
-pm2 save
-pm2 describe langx-cloudflared
-```
-
-## 3. Move DNS to Cloudflare
-
-The domain must use the nameservers assigned by the Cloudflare zone. Change the nameservers at the domain registrar, then wait for Cloudflare to mark the zone active.
-
-Once active, route the hostname to the existing tunnel:
-
-```bash
-cloudflared tunnel route dns 89937102-5243-4007-92f7-b8feb90d8966 akash.tw
-cloudflared tunnel route dns 89937102-5243-4007-92f7-b8feb90d8966 www.akash.tw
-```
-
-Cloudflare creates the proxied DNS record. Remove any conflicting root `A`, `AAAA`, or `CNAME` records first.
-
-## 4. Publish the repository
-
-Authenticate GitHub CLI interactively, then create and push the repository:
+Use a versioned release directory so rollback never requires a destructive Git operation.
 
 ```bash
 cd /home/akash/akash-portfolio
-gh auth login -h github.com -p https -w
-gh repo create akash-portfolio --public --source=. --remote=origin --push \
-  --description "Personal portfolio for akash.tw"
+npm ci
+npm test
+npm run build
+cp -a .next/standalone /home/akash/releases/portfolio-YYYYMMDD-HHMMSS
+cp -a .next/static /home/akash/releases/portfolio-YYYYMMDD-HHMMSS/.next/static
+cp -a public /home/akash/releases/portfolio-YYYYMMDD-HHMMSS/public
 ```
 
-## 5. Verify publicly
+Set `NEXT_PUBLIC_SITE_URL=https://akash.tw`, `HOSTNAME=127.0.0.1`, and `PORT=3003` for the production process.
+
+## PM2 service
 
 ```bash
-curl -I https://akash.tw
+cd /home/akash/releases/portfolio-YYYYMMDD-HHMMSS
+HOSTNAME=127.0.0.1 PORT=3003 NEXT_PUBLIC_SITE_URL=https://akash.tw \
+  pm2 start server.js --name akash-portfolio --time
+pm2 save
 ```
 
-Confirm the response is `200`, then test the desktop and mobile layouts in a browser.
+For a release update, use `pm2 restart akash-portfolio --update-env`. Inspect with `pm2 logs akash-portfolio --lines 100` and `pm2 describe akash-portfolio`.
+
+## Health and route checks
+
+```bash
+curl --fail http://127.0.0.1:3003/health
+curl --fail http://127.0.0.1:8083/
+curl --fail http://127.0.0.1:8083/research/tag-twin
+curl --fail http://127.0.0.1:8083/apps
+curl --fail http://127.0.0.1:8083/projects
+curl --fail http://127.0.0.1:8083/writing
+```
+
+Validate and reload the repository Caddy configuration only after the Node health check succeeds:
+
+```bash
+sudo caddy validate --config /etc/caddy/Caddyfile
+sudo systemctl reload caddy
+```
+
+## Rollback
+
+Keep at least two known-good release directories. Restart the PM2 process from the previous directory, verify `/health`, and reload Caddy only if its upstream changed. Do not reset the repository or delete the failed release until logs and artifacts have been inspected.

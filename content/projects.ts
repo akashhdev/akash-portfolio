@@ -1,0 +1,14 @@
+export const projects = [
+  { year: "2023", title: "ArcGIS shapefiles to 3D models", area: "Geospatial API", summary: "A Flask API that converted 2D shapefiles into rendered 3D models during a 48-hour national hackathon.", skills: ["Python", "Flask", "ArcGIS"] },
+  { year: "2024", title: "Fast neural artistic style transfer", area: "Machine learning", summary: "A PyTorch implementation for transferring the visual character of an artwork onto another image.", skills: ["PyTorch", "CNNs", "Imaging"] },
+  { year: "2024", title: "Image color restoration", area: "Machine learning", summary: "A neural approach for restoring plausible color to black-and-white photographs and archival imagery.", skills: ["PyTorch", "Computer vision"] },
+  { year: "2024", title: "Gesture-controlled coffee ordering", area: "Human-computer interaction", summary: "A touch-free ordering flow driven by tracked hand gestures, including menu navigation and receipt output.", skills: ["OpenCV", "Gesture tracking", "HCI"] },
+  { year: "2023", title: "Privacy-aware face blurring", area: "Computer vision", summary: "A real-time video pipeline that detects and obscures faces continuously.", skills: ["OpenCV", "Video processing"] },
+  { year: "2023", title: "Coin classification and counter", area: "Computer vision", summary: "A camera-based system for classifying coin types and calculating their combined monetary value.", skills: ["OpenCV", "Classification"] },
+  { year: "2023", title: "Gesture cursor and keyboard", area: "Human-computer interaction", summary: "Experiments mapping tracked hand movement and gestures to desktop pointer and keyboard controls.", skills: ["OpenCV", "MediaPipe", "HCI"] },
+  { year: "2022", title: "Real-time object detection", area: "Computer vision", summary: "Live recognition of multiple COCO object classes from a video stream.", skills: ["OpenCV", "COCO", "Detection"] },
+  { year: "2022", title: "Boston housing analysis", area: "Data science", summary: "An exploration of social and economic variables associated with historical Boston housing prices.", skills: ["Python", "Statistics", "Visualization"] },
+  { year: "2022", title: "Recession and housing-price analysis", area: "Data science", summary: "A statistical comparison of housing-price behavior during recessionary and non-recessionary periods.", skills: ["Pandas", "Hypothesis testing"] },
+  { year: "2022", title: "Movie recommender", area: "Data science", summary: "A similarity-based recommendation experiment using structured film metadata.", skills: ["Python", "Recommendation systems"] },
+  { year: "2021", title: "Sensor and Arduino experiments", area: "Hardware", summary: "Small embedded-system studies connecting sensors, actuators, and software control loops.", skills: ["Arduino", "C++", "Sensors"] },
+] as const;
