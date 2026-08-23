@@ -33,6 +33,96 @@ test("browser history restores the résumé preview", async ({ page }) => {
   await expect(page.getByRole("dialog")).toBeVisible();
 });
 
+test("project demos open in a URL-aware accessible side panel", async ({ page }) => {
+  await page.goto("/projects");
+  await expect(page.locator("iframe")).toHaveCount(0);
+  const trigger = page.getByRole("button", { name: "View demo for ArcGIS shapefiles to 3D models" });
+  await trigger.focus();
+  await trigger.press("Enter");
+  await expect(page).toHaveURL(/project=arcgis-shapefiles-to-3d-models/);
+  const dialog = page.getByRole("dialog", { name: "ArcGIS shapefiles to 3D models" });
+  await expect(dialog).toBeVisible();
+  await expect(dialog).toContainText("A Flask API that converted 2D shapefiles into rendered 3D models");
+  await expect(dialog).toContainText("Project context");
+  await expect(dialog).toContainText("Results & outcomes");
+  await expect(dialog).toContainText("Key learnings");
+  await expect(dialog).toContainText("received second prize in the hackathon");
+  await expect(dialog.locator("iframe")).toHaveAttribute("src", /youtube-nocookie\.com\/embed\/m7ln6uTDEbw\?enablejsapi=1&playsinline=1&origin=/);
+  await expect(dialog.locator("iframe")).toHaveCount(1);
+  await expect(dialog.locator(".project-drawer-actions a")).toHaveText(["Watch 2D ArcGIS to 3D on YouTube ↗", "View source on GitHub ↗"]);
+  await expect(dialog.getByRole("link", { name: /View source on GitHub/ })).toHaveAttribute("href", "https://github.com/akashhdev/nirmanHackathon2023RunnerUp");
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  expect(overflow).toBe(false);
+  if ((page.viewportSize()?.width ?? 1280) <= 620) {
+    const drawerWidth = await dialog.evaluate((element) => Math.round(element.getBoundingClientRect().width));
+    expect(drawerWidth).toBe(page.viewportSize()?.width);
+  }
+  await page.keyboard.press("Escape");
+  await expect(dialog).toBeHidden();
+  await expect(page.locator("iframe")).toHaveCount(0);
+  await expect(trigger).toBeFocused();
+  await expect(page).not.toHaveURL(/project=/);
+  await page.goBack();
+  await expect(page.getByRole("dialog", { name: "ArcGIS shapefiles to 3D models" })).toBeVisible();
+});
+
+test("gesture project switches one privacy-enhanced video player", async ({ page }) => {
+  await page.goto("/projects?project=gesture-cursor-and-keyboard");
+  const dialog = page.getByRole("dialog", { name: "Gesture cursor and keyboard" });
+  const iframe = dialog.locator("iframe");
+  const video = dialog.locator("video");
+  await expect(dialog).toBeVisible();
+  await expect(iframe).toHaveCount(0);
+  await expect(video).toHaveCount(1);
+  await expect(video.locator("source")).toHaveAttribute("src", "https://user-images.githubusercontent.com/89295808/219943363-490ebd51-41c1-4cb1-8830-394e56ca9a5f.mp4");
+  expect(await video.evaluate((element) => (element as HTMLVideoElement).muted)).toBe(true);
+  await expect(dialog.getByRole("link", { name: /View source on GitHub/ })).toHaveAttribute("href", "https://github.com/akashhdev/cursorGestureControlInterface");
+  await dialog.getByRole("button", { name: "Gesture keyboard" }).click();
+  await expect(video).toHaveCount(0);
+  await expect(iframe).toHaveAttribute("src", /youtube-nocookie\.com\/embed\/eI2WCGRazD0\?enablejsapi=1&playsinline=1&origin=/);
+  await expect(dialog.getByRole("link", { name: /View source on GitHub/ })).toHaveAttribute("href", "https://github.com/akashhdev/VirtualKeyboardOpenCV");
+  await dialog.getByRole("button", { name: "Volume control" }).click();
+  await expect(iframe).toHaveAttribute("src", /youtube-nocookie\.com\/embed\/-pegHhLSizM\?enablejsapi=1&playsinline=1&origin=/);
+  await expect(iframe).toHaveCount(1);
+  await expect(dialog.getByRole("link", { name: /View source on GitHub/ })).toHaveAttribute("href", "https://github.com/akashhdev/volumeControlGestureInterface");
+});
+
+test("GitHub-hosted calculator and bicep demos load muted", async ({ page }) => {
+  const cases = [
+    ["bicep-curl-counter", "Bicep Curl Counter", "https://user-images.githubusercontent.com/89295808/219944072-9eeac4dd-a998-403b-8787-0cdec011a4f3.mp4", "https://github.com/akashhdev/personalTrainer_OpenCV"],
+    ["virtual-calculator", "Virtual Calculator", "https://user-images.githubusercontent.com/89295808/219943897-6fef7245-fe2b-4f43-aec9-639d59895e80.mp4", "https://github.com/akashhdev/VirtualCalculatorOpenCV"],
+  ] as const;
+
+  for (const [projectId, title, videoUrl, repositoryUrl] of cases) {
+    await page.goto(`/projects?project=${projectId}`);
+    const dialog = page.getByRole("dialog", { name: title });
+    const video = dialog.locator("video");
+    await expect(video).toHaveCount(1);
+    await expect(video.locator("source")).toHaveAttribute("src", videoUrl);
+    expect(await video.evaluate((element) => (element as HTMLVideoElement).muted)).toBe(true);
+    await expect(dialog.getByRole("link", { name: /View source on GitHub/ })).toHaveAttribute("href", repositoryUrl);
+  }
+});
+
+test("projects without demos open expanded details and invalid links fail closed", async ({ page }) => {
+  await page.goto("/projects?project=not-a-project");
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  const project = page.locator('article[data-project-id="image-color-restoration"]');
+  await expect(project).toContainText("Image color restoration");
+  const trigger = project.getByRole("button", { name: "View details for Image color restoration" });
+  await trigger.click();
+  await expect(page).toHaveURL(/project=image-color-restoration/);
+  const dialog = page.getByRole("dialog", { name: "Image color restoration" });
+  await expect(dialog).toContainText("Project context");
+  await expect(dialog).toContainText("Results & outcomes");
+  await expect(dialog).toContainText("Key learnings");
+  await expect(dialog).toContainText("Delivered an end-to-end application");
+  await expect(dialog.locator("iframe, video")).toHaveCount(0);
+  await expect(dialog.getByRole("link", { name: /View source on GitHub/ })).toHaveAttribute("href", "https://github.com/akashhdev/imageRestorization");
+  await page.keyboard.press("Escape");
+  await expect(trigger).toBeFocused();
+});
+
 test("section navigation and responsive header remain accessible", async ({ page }) => {
   await page.goto("/");
   const width = page.viewportSize()?.width ?? 1280;
