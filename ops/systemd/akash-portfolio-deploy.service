@@ -9,4 +9,3 @@ WorkingDirectory=/home/akash/akash-portfolio
 ExecStart=/home/akash/akash-portfolio/scripts/deploy-if-needed.sh
 TimeoutStartSec=30min
 Nice=10
-

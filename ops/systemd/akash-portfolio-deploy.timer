@@ -10,4 +10,3 @@ Unit=akash-portfolio-deploy.service
 
 [Install]
 WantedBy=timers.target
-

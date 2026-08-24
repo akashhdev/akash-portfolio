@@ -29,4 +29,3 @@ fi
 
 echo "Deploying origin/${DEPLOY_BRANCH}: ${deployed_sha:-none} -> ${remote_sha}."
 exec "${DEPLOY_SCRIPT}" "${remote_sha}"
-
