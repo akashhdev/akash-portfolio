@@ -1,0 +1,53 @@
+name: Deploy production
+
+on:
+  push:
+    branches:
+      - publish-portfolio
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: production
+
+    steps:
+      - name: Configure restricted deployment key
+        env:
+          DEPLOY_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d "$HOME/.ssh"
+          printf '%s\n' "$DEPLOY_PRIVATE_KEY" > "$HOME/.ssh/portfolio-deploy"
+          chmod 600 "$HOME/.ssh/portfolio-deploy"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+
+      - name: Deploy exact pushed commit
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          ssh \
+            -i "$HOME/.ssh/portfolio-deploy" \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            "$DEPLOY_USER@$DEPLOY_HOST" \
+            "deploy $GITHUB_SHA"
+
+      - name: Verify public route
+        run: |
+          curl --fail --show-error --silent \
+            --retry 5 --retry-delay 2 \
+            "https://akash.tw/projects?deployment=$GITHUB_SHA" >/dev/null
+
