@@ -1,0 +1,13 @@
+[Unit]
+Description=Check GitHub for a new akash-portfolio release
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=2min
+RandomizedDelaySec=15s
+Persistent=true
+Unit=akash-portfolio-deploy.service
+
+[Install]
+WantedBy=timers.target
+

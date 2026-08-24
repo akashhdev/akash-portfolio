@@ -4,7 +4,7 @@ The portfolio runs as a standalone Next.js Node service behind Caddy and the exi
 
 ## Automated deployment
 
-Pushes to `publish-portfolio` trigger `.github/workflows/deploy-production.yml`. The workflow uses a GitHub-hosted runner and a restricted SSH key whose forced command only accepts `deploy <40-character-sha>`.
+The user-level `akash-portfolio-deploy.timer` checks the public `publish-portfolio` branch every two minutes. When the remote SHA differs from the active release marker, `scripts/deploy-if-needed.sh` invokes the guarded production deployment. This pull-based design requires no inbound webhook, deployment credential, or self-hosted GitHub Actions runner.
 
 On the server, `scripts/deploy-production.sh`:
 
@@ -17,14 +17,17 @@ On the server, `scripts/deploy-production.sh`:
 7. restores the previous release if the production process fails to become healthy; and
 8. retains the previous release directory for manual rollback.
 
-The workflow requires these GitHub `production` environment secrets:
+Install or refresh the checked-in systemd units with:
 
-- `DEPLOY_HOST`
-- `DEPLOY_USER`
-- `DEPLOY_PRIVATE_KEY`
-- `DEPLOY_KNOWN_HOSTS`
+```bash
+mkdir -p /home/akash/.config/systemd/user
+cp ops/systemd/akash-portfolio-deploy.service /home/akash/.config/systemd/user/
+cp ops/systemd/akash-portfolio-deploy.timer /home/akash/.config/systemd/user/
+systemctl --user daemon-reload
+systemctl --user enable --now akash-portfolio-deploy.timer
+```
 
-The corresponding public key must be installed in `~/.ssh/authorized_keys` with `restrict` and a forced command pointing to `scripts/deploy-ssh-gateway.sh`. The gateway does not provide an interactive shell.
+Inspect the timer and recent deployments with `systemctl --user status akash-portfolio-deploy.timer` and `journalctl --user -u akash-portfolio-deploy.service -n 200`.
 
 ## Manual deployment
 
